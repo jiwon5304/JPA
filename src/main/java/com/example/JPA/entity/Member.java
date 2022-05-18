@@ -9,6 +9,16 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 // ToString 필드에는 team과 같은 연관관계 필드는 들어가지 않는 것이 좋음
 @ToString(of = {"id", "username", "age"})
+/**
+ * 실무에서 @NamedQuery 은 잘 사용하지 않음, 주로 SPRING JPA가 repository 에 query 를 바로 정의
+ * NamedQuery 의 장점: 애플리케이션 로딩 시점에 파싱으로 오타를 잡아줌
+ **/
+
+
+@NamedQuery(
+        name="Member.findByUsername",
+        query="select m from Member m where m.username = :username"
+)
 public class Member {
 
     @Id
@@ -34,6 +44,7 @@ public class Member {
     public Member(String username) {
         this(username, 0);
     }
+
     public Member(String username, int age) {
         this(username, age, null);
     }
