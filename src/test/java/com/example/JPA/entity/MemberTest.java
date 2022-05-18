@@ -32,7 +32,10 @@ class MemberTest {
         em.persist(member3);
         em.persist(member4);
 
-        //초기화 em.flush(); em.clear();
+        //초기화
+//        em.flush();
+//        em.clear();
+
         //확인
         List<Member> members = em.createQuery("select m from Member m",
                         Member.class)
